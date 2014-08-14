@@ -1,5 +1,7 @@
 require File.join(File.dirname(__FILE__), '..', 'lib', 'recipient_interceptor')
 
+require 'pry'
+
 describe RecipientInterceptor do
   it 'overrides to/cc/bcc fields' do
     Mail.register_interceptor RecipientInterceptor.new(recipient_string)
