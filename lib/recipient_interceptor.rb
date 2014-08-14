@@ -9,12 +9,12 @@ class RecipientInterceptor
   def delivering_email(message)
     add_custom_headers message
     add_subject_prefix message
-    
+
     if Array(message.to).any? { |email| email.include?('@example.com') || email.include?('@immerss.com') }
       message.to = @recipients
       message.cc = []
     else
-      message.cc = @recipients
+      message.cc = @recipients.select { |email| !message.to.include?(email) }
     end
 
     message.bcc = []
